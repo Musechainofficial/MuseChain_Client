@@ -7,6 +7,7 @@ import FooterComponent from "src/components/Footer";
 import userService from "src/services/users/userService";
 import Loading from "src/components/Loading";
 import { MessageDto } from "src/services/message/dto/messageDto";
+import ResetComponent from "src/pages/account/reset";
 import GoToTop from '../GoToTop';
 const ForgetComponent = () => {
   let navigate = useNavigate();
@@ -39,7 +40,7 @@ const ForgetComponent = () => {
         <Container>
           <Card sx={{ borderRadius: "20px", placeItems: "center", display: "flex", flexDirection: "column", padding: "40px" }} >
             <Typography
-              typography="p"
+              typography="h4"
               sx={{
                 fontWeight: 700,
                 width: "100%",
@@ -51,7 +52,7 @@ const ForgetComponent = () => {
                 Forgot your password?
             </Typography>
             <Typography
-              typography="p"
+              typography="h5"
               sx={{
                 fontWeight: 700,
                 width: "100%",
@@ -78,7 +79,7 @@ const ForgetComponent = () => {
               }}
             />
             <Button
-              onClick={onNext}
+              onClick={ResetComponent}
               sx={{
                 background: "#c1a86a",
                 padding: "15px 30px 15px 30px",
@@ -89,7 +90,7 @@ const ForgetComponent = () => {
               }}
             >
               <Typography
-                typography="p"
+                typography="h6"
                 sx={{
                   color: "#fff",
                   fontWeight: 500,
@@ -106,5 +107,4 @@ const ForgetComponent = () => {
     </React.Fragment>
   );
 };
-
 export default ForgetComponent;

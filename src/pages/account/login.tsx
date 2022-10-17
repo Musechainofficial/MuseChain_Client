@@ -101,7 +101,7 @@ const LoginComponent = () => {
                   </Typography>
                 </Link>
                 <Typography
-                  typography="p"
+                  typography="h4"
                   sx={{
                     fontWeight: 700,
                     width: "100%",
@@ -113,7 +113,7 @@ const LoginComponent = () => {
                   }}
                 >
                     By continuing you agree to Musechain 
-                    <a target="#" href="/"> terms and conditions</a> and <br /> <a target="#" href="/">privacy policy</a>
+                    <a target="#" href="/" > terms and conditions</a> and <br /> <a target="#" href="/">privacy policy</a>
                 </Typography>
                 <Box width="100%" sx={{ display: "flex", justifyContent: "center",placeItems: "center" }}>
                   <Button

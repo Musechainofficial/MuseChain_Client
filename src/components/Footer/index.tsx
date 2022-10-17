@@ -25,7 +25,7 @@ const FooterComponent = () => {
             
             <Box width="100%" sx={{ display: "flex", justifyContent: "flex-end" }}>
               <Typography typography="h5" sx={{ color: "#D9DBE1" }}>
-                <a href='http://mulechain.org/'>Terms & Conditions </a>
+                <a href='http://musechain.org/'>Terms & Conditions </a>
                  | Privacy Policy
               </Typography>
             </Box>

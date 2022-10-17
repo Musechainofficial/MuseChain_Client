@@ -47,6 +47,9 @@ const NavBarComponent = () => {
               <NavLink to="/marketplace">Marketplace</NavLink>
             </li>
             <li>
+              <NavLink to="/profile">Profile</NavLink>
+            </li>
+            <li>
               <NavLink to="/">Log Out</NavLink>
             </li>
           </ul>

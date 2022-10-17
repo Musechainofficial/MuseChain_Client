@@ -17,6 +17,7 @@ import OrganizationDetailsComponent from 'src/pages/Organization/organizationDet
 import PageNotFoundComponent from 'src/pages/home/pageNotFound';
 import Success from 'src/pages/payment/success';
 import Failed from 'src/pages/payment/failed';
+import ProfileComponent from 'src/pages/market/profile';
 const Routers = () => {
     return (
       <>
@@ -40,6 +41,7 @@ const Routers = () => {
             <Route path="/success" element={< Success />} />
             <Route path="/failed" element={< Failed />} />
             <Route path="/nfts" element={< LoginComponent />} />
+            <Route path="/profile" element={< ProfileComponent/>} />
           </Routes>
         </Suspense>
       </>
