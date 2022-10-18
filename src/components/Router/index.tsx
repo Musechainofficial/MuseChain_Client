@@ -18,6 +18,7 @@ import PageNotFoundComponent from 'src/pages/home/pageNotFound';
 import Success from 'src/pages/payment/success';
 import Failed from 'src/pages/payment/failed';
 import ProfileComponent from 'src/pages/market/profile';
+import WalletComponent from 'src/pages/wallet';
 const Routers = () => {
     return (
       <>
@@ -31,10 +32,9 @@ const Routers = () => {
             <Route path="/otp" element={<OTPComponent />} />
             <Route path="/resetpassword" element={<ResetComponent />} />
             <Route path="/setting" element={<SettingsComponent />} />
-            {/* <Route path="/payment" element={<PaymentComponent />} /> */}
+            <Route path="/wallet" element={<WalletComponent />} />
             <Route path="/marketplace" element={<MarketComponent />} />
             <Route path="/support" element={<SupportComponent />} />
-            {/* <Route path="/user-details" element={<UserDetailsComponent />} /> */}
             <Route path="/organization-details" element={<OrganizationDetailsComponent />} />
             <Route path="/page-not-found" element={<PageNotFoundComponent />} />
             <Route path="*" element={<PageNotFoundComponent />} />

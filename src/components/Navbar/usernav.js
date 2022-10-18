@@ -1,32 +1,13 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./navbar.css";
 import heroIcon from "../../assets/images/logo.svg";
-import {} from "react-icons/fa";
+import { } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 import { NavLink } from "react-router-dom";
 
 const NavBarComponent = () => {
-//     const [account, setAccount] = useState("");
 
-//     useEffect(() => {
-//       connectToWeb3();
-//     }, [])
-  
-//     const connectToWeb3 = async () => {
-//       const { solana } = window;
-//       if (solana && solana.isPhantom) {
-//         try {
-//           const response = await solana.connect({ onlyIfTrusted: true });
-//           console.log(response.publicKey.toString());
-//           setAccount(response.publicKey)
-//         } catch (error) {
-//           const response = await solana.connect();
-//           console.log(response.publicKey.toString());
-//           setAccount(response.publicKey)
-//         }
-//       }
-//     };
   const [wallet, setWallet] = useState("");
 
   useEffect(() => {
@@ -37,7 +18,7 @@ const NavBarComponent = () => {
     );
     if (token.length > 0) {
       tok = token[1];
-    } 
+    }
     setWallet(tok);
   }, [])
 
@@ -63,7 +44,7 @@ const NavBarComponent = () => {
               <NavLink to="/profile">Profile</NavLink>
             </li>
             <li>
-              <NavLink to="/">Wallet: {wallet}</NavLink>
+              <NavLink to="/wallet">Wallet: {wallet}</NavLink>
             </li>
             <li>
               <NavLink to="/">Log Out</NavLink>
@@ -74,7 +55,7 @@ const NavBarComponent = () => {
         {/* 3rd social media links */}
         <div className="social-media">
           <ul className="social-media-desktop">
-            
+
           </ul>
 
           {/* hamburget menu start  */}
@@ -85,12 +66,6 @@ const NavBarComponent = () => {
           </div>
         </div>
       </nav>
-
-      {/* hero section  */}
-      {/* <section className="hero-section">
-        <p>Welcome to </p>
-        <h1>Thapa Technical</h1>
-      </section> */}
     </>
   );
 };
