@@ -9,7 +9,7 @@ const WalletComponent = () => {
     <React.Fragment>
       <NavBarComponent />
       <Container>
-        <P>Wallet content here</P>
+        <p>Wallet content here</p>
       </Container>
       <FooterComponent />
       <GoToTop />
