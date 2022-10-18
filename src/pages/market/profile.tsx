@@ -28,7 +28,7 @@ const ProfileComponent = () => {
     const request = {
       token: tok,
     };
-    fetch("http://localhost:8080/api/nft/bought", {
+    fetch("https://musechain-api.herokuapp.com/api/nft/bought", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
