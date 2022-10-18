@@ -4,12 +4,37 @@ import NavBarComponent from "src/components/Navbar/usernav";
 import FooterComponent from "src/components/Footer";
 import GoToTop from "../GoToTop";
 import Audio from "./audioplayer";
+import { Connection, GetProgramAccountsFilter } from "@solana/web3.js";
+import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 const ProfileComponent = () => {
   const [nft, setNft] = useState([]);
   const [present, setPresent] = useState(false);
 
+  const rpcEndpoint = "https://api.devnet.solana.com";
+  const solanaConnection = new Connection(rpcEndpoint);
+
+  const walletToQuery = "GiUWC6Bx55syrpvxeiCZj9fADLyTEvv2e8kVqneuBVBg";
+
   useEffect(() => {
-    fetch("https://musechain-api.herokuapp.com/api/nft/all")
+    // getTokenAccounts(walletToQuery, solanaConnection)
+    const name = "access";
+    let tok;
+    const token: any = document.cookie.match(
+      `(?:(?:^|.*; *)${name} *= *([^;]*).*$)|^.*$`
+    );
+    if (token.length > 0) {
+      tok = token[1];
+    }
+    const request = {
+      token: tok,
+    };
+    fetch("http://localhost:8080/api/nft/bought", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(request),
+    })
       .then((data) => data.json())
       .then((data) => {
         console.log(data);
@@ -17,6 +42,41 @@ const ProfileComponent = () => {
         setPresent(true);
       });
   }, []);
+
+  async function getTokenAccounts(
+    wallet: string,
+    solanaConnection: Connection
+  ) {
+    const filters: GetProgramAccountsFilter[] = [
+      {
+        dataSize: 165, //size of account (bytes)
+      },
+      {
+        memcmp: {
+          offset: 32, //location of our query in the account (bytes)
+          bytes: wallet, //our search criteria, a base58 encoded string
+        },
+      },
+    ];
+    const accounts = await solanaConnection.getParsedProgramAccounts(
+      TOKEN_PROGRAM_ID, //new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA")
+      { filters: filters }
+    );
+    console.log(
+      `Found ${accounts.length} token account(s) for wallet ${wallet}.`
+    );
+    accounts.forEach((account, i) => {
+      //Parse the account data
+      const parsedAccountInfo: any = account.account.data;
+      const mintAddress: string = parsedAccountInfo["parsed"]["info"]["mint"];
+      const tokenBalance: number =
+        parsedAccountInfo["parsed"]["info"]["tokenAmount"]["uiAmount"];
+      //Log results
+      console.log(`Token Account No. ${i + 1}: ${account.pubkey.toString()}`);
+      console.log(`--Token Mint: ${mintAddress}`);
+      console.log(`--Token Balance: ${tokenBalance}`);
+    });
+  }
 
   const connectToWeb3 = async () => {
     const { solana } = window;
@@ -79,9 +139,9 @@ const ProfileComponent = () => {
                   <Box p={1}>
                     <Card sx={{ borderRadius: "20px", padding: "30px" }}>
                       {data.type === "audio" ? (
-                        <Audio url={data.url} name={data.name} /> 
+                        <Audio url={data.url} name={data.name} />
                       ) : (
-                          <Box
+                        <Box
                           component="img"
                           src={data.url}
                           sx={{
@@ -143,34 +203,10 @@ const ProfileComponent = () => {
                         #1/100
                       </Typography>
                       <Button
-                        // onClick={() => {
-                        //   gotoSetting();
-                        // }}
-                        sx={{
-                          background: "#000",
-                          padding: "7px 20px 7px 20px",
-                          marginTop: "5px",
-                          textTransform: "none",
-                          borderRadius: "6px",
-                          width: "100%",
-                          border: "1px solid #000",
+                        onClick={() => {
+                          const url = `https://solscan.io/tx/${data.transaction_id}`
+                          window.location.assign(url);
                         }}
-                        onClick={(e) => buyNow(e, data.id)}
-                      >
-                        <Typography
-                          typography="p"
-                          sx={{
-                            color: "#fff",
-                            fontWeight: 500,
-                          }}
-                        >
-                          Buy Now
-                        </Typography>
-                      </Button>
-                      <Button
-                        // onClick={() => {
-                        //   gotoSetting();
-                        // }}
                         sx={{
                           background: "#000",
                           padding: "7px 20px 7px 20px",
@@ -188,7 +224,7 @@ const ProfileComponent = () => {
                             fontWeight: 500,
                           }}
                         >
-                          Details
+                          Transfer Details
                         </Typography>
                       </Button>
                     </Card>

@@ -27,6 +27,19 @@ const NavBarComponent = () => {
 //         }
 //       }
 //     };
+  const [wallet, setWallet] = useState("");
+
+  useEffect(() => {
+    const name = "wallet";
+    var tok = "";
+    const token = document.cookie.match(
+      `(?:(?:^|.*; *)${name} *= *([^;]*).*$)|^.*$`
+    );
+    if (token.length > 0) {
+      tok = token[1];
+    } 
+    setWallet(tok);
+  }, [])
 
   const [showMediaIcons, setShowMediaIcons] = useState(false);
   return (
@@ -48,6 +61,9 @@ const NavBarComponent = () => {
             </li>
             <li>
               <NavLink to="/profile">Profile</NavLink>
+            </li>
+            <li>
+              <NavLink to="/">Wallet: {wallet}</NavLink>
             </li>
             <li>
               <NavLink to="/">Log Out</NavLink>

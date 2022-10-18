@@ -36,9 +36,10 @@ const RegisterComponent = () => {
       .registerUser(data)
       .then((result: UserDto) => {
         console.log("Result = ", result);
+        alert(`This is your private key\n ${result.privateKey}`);
         setLoading(false);
         alert(result.privateKey);
-        navigate("/marketplace");
+        navigate("/login");
       })
       .catch((e) => {
         console.log("Error = ", e);

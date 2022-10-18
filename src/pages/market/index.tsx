@@ -9,7 +9,7 @@ const MarketComponent = () => {
   const [present, setPresent] = useState(false);
 
   useEffect(() => {
-    fetch("https://musechain-api.herokuapp.com/api/nft/all")
+    fetch("http://localhost:8080/api/nft/all")
       .then((data) => data.json())
       .then((data) => {
         console.log(data);
@@ -51,7 +51,7 @@ const MarketComponent = () => {
       wallet: "sdfasfd",
     };
     console.log(request);
-    fetch("https://musechain-api.herokuapp.com/api/nft/checkout", {
+    fetch("http://localhost:8080/api/nft/checkout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

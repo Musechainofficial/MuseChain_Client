@@ -27,6 +27,7 @@ const LoginComponent = () => {
       .then((result: UserDto) => {
         console.log("Result = ", result);
         document.cookie = "access=" + result.token
+        document.cookie = "wallet=" + result.wallet
         setLoading(false);
         navigate("/marketplace");
       })
