@@ -8,20 +8,6 @@ import { NavLink } from "react-router-dom";
 
 const NavBarComponent = () => {
 
-  const [wallet, setWallet] = useState("");
-
-  useEffect(() => {
-    const name = "wallet";
-    var tok = "";
-    const token = document.cookie.match(
-      `(?:(?:^|.*; *)${name} *= *([^;]*).*$)|^.*$`
-    );
-    if (token.length > 0) {
-      tok = token[1];
-    }
-    setWallet(tok);
-  }, [])
-
   const [showMediaIcons, setShowMediaIcons] = useState(false);
   return (
     <>
@@ -44,7 +30,7 @@ const NavBarComponent = () => {
               <NavLink to="/profile">Profile</NavLink>
             </li>
             <li>
-              <NavLink to="/wallet">Wallet: {wallet}</NavLink>
+              <NavLink to="/wallet">Wallet</NavLink>
             </li>
             <li>
               <NavLink to="/">Log Out</NavLink>
