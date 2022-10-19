@@ -35,7 +35,7 @@ const HomeGuideComponent = () => {
         </Typography>
         <Grid container lg={12} py={6}>
           <Grid item lg={7} sx={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
-            <Box
+            {/* <Box
               component="img"
               src={phoneImage}
               ml={{
@@ -47,7 +47,7 @@ const HomeGuideComponent = () => {
                 maxWidth: "100%",
                 aspectRatio: 1,
               }}
-            />
+            /> */}
           </Grid>
           <Grid item lg={5} pl={3} sx={{display: "flex", placeItems: "center", flexDirection: "row"}}>
             <Box>
