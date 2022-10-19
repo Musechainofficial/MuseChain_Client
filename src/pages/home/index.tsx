@@ -18,7 +18,7 @@ const HomeComponent = () => {
       <AnswersComponent />
       <GalleryComponent />
       <HomeGuideComponent />
-      <HomeFooterComponent />
+      {/* <HomeFooterComponent /> */}
       <FooterComponent />
       <GoToTop />
     </React.Fragment>

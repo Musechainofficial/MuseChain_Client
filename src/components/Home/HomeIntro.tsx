@@ -70,7 +70,7 @@ const HomeIntroComponent = () => {
           </Grid>
           <Grid item lg={5} sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
             <Box />
-            <Box
+            {/* <Box
               component="img"
               src={phoneImage}
               height={{ xs: "400px", md: "500px", lg: "640px" }}
@@ -82,7 +82,7 @@ const HomeIntroComponent = () => {
               sx={{
                 maxWidth: "100%",
               }}
-            />
+            /> */}
           </Grid>
         </Grid>
       </Container>
