@@ -44,7 +44,7 @@ const NavBarComponent = () => {
               <NavLink to="/profile">Profile</NavLink>
             </li>
             <li>
-              <NavLink to="/wallet">Wallet: {wallet}</NavLink>
+              <NavLink to="/wallet">Wallet</NavLink>
             </li>
             <li>
               <NavLink to="/">Log Out</NavLink>
