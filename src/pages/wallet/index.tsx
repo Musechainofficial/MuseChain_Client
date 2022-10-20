@@ -4,6 +4,7 @@ import NavBarComponent from "src/components/Navbar/usernav";
 import FooterComponent from "src/components/Footer";
 import GoToTop from "../GoToTop";
 import { Connection, PublicKey } from "@solana/web3.js";
+import { FaWallet,FaMoneyCheckAlt } from "react-icons/fa";
 const WalletComponent = () => {
   const [wallet, setWallet] = useState("");
   const [balance, setBalance] = useState("0");
@@ -38,42 +39,43 @@ const WalletComponent = () => {
     <React.Fragment>
       <NavBarComponent />
       <Container>
-        <Box p={1}>
-          <Card sx={{ borderRadius: "20px", padding: "30px" }}>
-            <Box
+      <Box
               component="img"
-              src="https://images.ctfassets.net/c4bfhyf95ag8/7MlembSgoWl0aBDdb5AnZp/e6466ed759b281cbf9d5057f5353a548/Solana_Wallet_Image_2-100.jpg"
+              src="https://i.ibb.co/wMZMmxX/wallet.png"
               sx={{
-                width: "100%",
+                width: "50%",
+                height: "50%",
                 aspectRatio: "1",
                 display: "flex",
+                margin: "auto",
                 position: "relative",
                 justifyContent: "center",
                 alignItems: "center",
+                padding:'0%'
               }}
             />
             <Typography
-              typography="p"
+              typography="h1"
               mt={2}
               p={0.5}
               sx={{
-                fontSize: "16px",
-                fontWeight: 500,
+                fontSize: "150%",
+                fontWeight: 800,
                 color: "#000",
               }}
             >
-              Wallet Address: {wallet} 
+              <FaWallet/>  Wallet Address: {wallet} 
             </Typography>
-            <Typography
-              typography="p"
+        <Typography
+              typography="h1"
               p={0.5}
               sx={{
-                fontSize: "16px",
-                fontWeight: 500,
+                fontSize: "150%",
+                fontWeight: 800,
                 color: "#000",
               }}
             >
-              Balance: {balance} SOL 
+              <FaMoneyCheckAlt/>  Balance: {balance} SOL 
             </Typography>
             <Button
               onClick={() => {
@@ -82,8 +84,10 @@ const WalletComponent = () => {
               }}
               sx={{
                 background: "#000",
-                padding: "7px 20px 7px 20px",
-                marginTop: "5px",
+                paddingTop: '1%',
+                paddingBottom: '1%',
+                marginTop:'2%',
+                marginBottom:'2%',
                 textTransform: "none",
                 borderRadius: "6px",
                 width: "100%",
@@ -91,7 +95,7 @@ const WalletComponent = () => {
               }}
             >
               <Typography
-                typography="p"
+                typography="h4"
                 sx={{
                   color: "#fff",
                   fontWeight: 500,
@@ -100,8 +104,6 @@ const WalletComponent = () => {
                 Check In Explorer
               </Typography>
             </Button>
-          </Card>
-        </Box>
       </Container>
       <FooterComponent />
       <GoToTop />
