@@ -158,7 +158,7 @@ const MarketComponent = () => {
                         onClick={(e) => buyNow(e, data.id)}
                       >
                         <Typography
-                          typography="p"
+                          typography="h5"
                           sx={{
                             color: "#fff",
                             fontWeight: 500,
@@ -182,7 +182,7 @@ const MarketComponent = () => {
                         }}
                       >
                         <Typography
-                          typography="p"
+                          typography="h5"
                           sx={{
                             color: "#fff",
                             fontWeight: 500,

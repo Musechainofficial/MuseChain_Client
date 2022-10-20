@@ -87,7 +87,7 @@ const MarketCardComponent = () => {
           }}
         >
           <Typography
-            typography="p"
+            typography="h5"
             sx={{
               color: "#fff",
               fontWeight: 500,
@@ -111,7 +111,7 @@ const MarketCardComponent = () => {
           }}
         >
           <Typography
-            typography="p"
+            typography="h5"
             sx={{
               color: "#fff",
               fontWeight: 500,
