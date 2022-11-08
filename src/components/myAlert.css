@@ -1,0 +1,60 @@
+.alertWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(250, 250, 250);
+}
+
+.alertBox{
+    width: auto;
+    height: auto;
+	overflow-y: scroll;
+}
+
+
+.myCloseButton {
+	background-color:#2dabf9;
+	border-radius:3px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	padding:5px 20px;
+    margin: 20px;
+	text-decoration:none;
+}
+.myCloseButton:hover {
+	background-color:#0688fa;
+}
+.myCloseButton:active {
+	position:relative;
+	top:1px;
+}
+
+.myCopyButton {
+	background-color:#2df960;
+	border-radius:3px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	padding:5px 20px;
+	text-decoration:none;
+}
+.myCopyButton:hover {
+	background-color:#06fa06;
+}
+.myCopyButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+
+/* <div className="alertWrapper"> {...props}
+<div className="alertBox">
+        <h4>Save your Private Key</h4>
+        <p>{props.text}</p>
+            <Button className='myCopyButton' onClick={props.onCopy}>Copy</Button>
+        <Button className="myCloseButton" onClick={props.onHide}>Close</Button>
+      </div>
+</div> */
