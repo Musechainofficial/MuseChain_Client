@@ -79,7 +79,7 @@ const ForgetComponent = () => {
               }}
             />
             <Button
-              onClick={ResetComponent}
+              onClick={() => {navigate("/resetPassword")}}
               sx={{
                 background: "#c1a86a",
                 padding: "15px 30px 15px 30px",

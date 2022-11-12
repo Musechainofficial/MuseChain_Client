@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Container, Typography, Button, Card, Grid } from "@mui/material";
-import { Input } from "antd";
+import { Input, Result } from "antd";
 import { useNavigate } from "react-router-dom";
 import NavBarComponent from "src/components/Navbar/navbar";
 import FooterComponent from "src/components/Footer";
@@ -8,8 +8,10 @@ import Loading from "src/components/Loading";
 import brandIcon from "../../assets/images/brand1.png";
 import userService from "src/services/users/userService";
 import { UserDto } from "src/services/users/dto/userDto";
-import{Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import GoToTop from '../GoToTop';
+import MyVerticallyCenteredModal from '../../components/MyVerticallyCenteredModal';
+
 const RegisterComponent = () => {
 
   let navigate = useNavigate();
@@ -21,6 +23,8 @@ const RegisterComponent = () => {
   const [rePassword, setRePassword] = useState<string>("");
   const [referral, setReferral] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [modalShow, setModalShow] = React.useState(false);
+  const [copypvt, setcopypvt] = useState('');
 
   const onRegister = () => {
     const data = {
@@ -35,11 +39,15 @@ const RegisterComponent = () => {
     userService
       .registerUser(data)
       .then((result: UserDto) => {
-        console.log("Result = ", result);
-        alert(`This is your private key\n ${result.privateKey}`);
+        // console.log("Result = ", result);
+        // alert(`This is your private key\n ${result.privateKey}`);
+        setcopypvt(result.privateKey);
+
         setLoading(false);
-        alert(result.privateKey);
-        navigate("/login");
+        // alert(`${result.privateKey} <Button>copy</Button>`);
+        setModalShow(true)
+        // navigate("/login");
+
       })
       .catch((e) => {
         console.log("Error = ", e);
@@ -47,21 +55,38 @@ const RegisterComponent = () => {
         alert(message);
         setLoading(false);
       });
+
   };
+
+  const hideAlert = () => {
+    setModalShow(false)
+    navigate("/login");
+  }
 
   return (
     <React.Fragment>
       <NavBarComponent />
       <Loading loading={loading} />
+      <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+        <MyVerticallyCenteredModal
+          style={{padding:'15px', borderRadius:'10px', backgroundColor: 'white', position: 'absolute', top: '14%', left:'10%', right:'10%', width: '80%' }}
+          show={modalShow}
+          onHide={hideAlert}
+          onCopy={() => { navigator.clipboard.writeText(copypvt) }}
+          text={copypvt}
+        />
+      </div>
       <Box my={4}>
-        <Container sx={{placeItems:"center"}}>
-          <Card sx={{ borderRadius: "4%",placeItems: "center" ,margin:"0%",paddingtop:"0%"}} >
+        <Container sx={{ placeItems: "center" }}>
+
+          <Card sx={{ borderRadius: "4%", placeItems: "center", margin: "0%", paddingtop: "0%" }} >
+
             <Grid container sx={{ placeItems: "center" }}>
-              <Grid item lg={6} p={10} sx={{ background: "#c1a86a",placeItems: "center",margin:"0%",paddingtop:"0%",paddingleft:"5%"}} >
+              <Grid item lg={6} p={10} sx={{ background: "#c1a86a", placeItems: "center", margin: "0%", paddingtop: "0%", paddingleft: "5%" }} >
                 <Box
                   component="img"
                   src={brandIcon}
-                  sx={{ width: "100%",display: 'flex', aspectRatio: 1 ,height: "100%",placeItems: "center"}}
+                  sx={{ width: "100%", display: 'flex', aspectRatio: 1, height: "100%", placeItems: "center" }}
                 />
                 <Typography
                   typography="h4"
@@ -73,10 +98,10 @@ const RegisterComponent = () => {
                     textAlign: "center",
                   }}
                 >
-                    Start your curated art <br /> collection now
+                  Start your curated art <br /> collection now
                 </Typography>
               </Grid>
-              <Grid item lg={6} p={10} sx={{placeItems: "center",margin:"0px",padding:"2%"}}>
+              <Grid item lg={6} p={10} sx={{ placeItems: "center", margin: "0px", padding: "2%" }}>
                 <Typography
                   typography="p"
                   sx={{
@@ -88,7 +113,7 @@ const RegisterComponent = () => {
                     textAlign: "left"
                   }}
                 >
-                    Create Account
+                  Create Account
                 </Typography>
                 <Input
                   placeholder="Firstname"
@@ -160,13 +185,12 @@ const RegisterComponent = () => {
                     textAlign: "left",
                   }}
                 >
-                    By continuing you agree to Musechain <a href="/">terms and conditions</a> and <a href="/">privacy policy</a>
+                  By continuing you agree to Musechain <a href="/">terms and conditions</a> and <a href="/">privacy policy</a>
                 </Typography>
                 <Box width="100%" sx={{ display: "flex", justifyContent: "center" }}>
                   <Button
-                    onClick={() => {
-                      onRegister();
-                    }}
+                    onClick={() => { onRegister(); }}
+                    // onClick={function (e) {onRegister(); popupcall() }}
                     sx={{
                       background: "#c1a86a",
                       padding: "15px 30px 15px 30px",
@@ -186,16 +210,16 @@ const RegisterComponent = () => {
                       Sign up
                     </Typography>
                   </Button>
-                  
+
                 </Box>
-                <p style={{textAlign:'center',padding:'10px'}}>Already have an account? <Link to='/Login'>Login</Link></p>
+                <p style={{ textAlign: 'center', padding: '10px' }}>Already have an account? <Link to='/Login'>Login</Link></p>
               </Grid>
             </Grid>
           </Card>
         </Container>
       </Box>
       <FooterComponent />
-      <GoToTop/>
+      <GoToTop />
     </React.Fragment>
   );
 };
