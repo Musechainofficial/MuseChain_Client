@@ -18,7 +18,7 @@ const MarketComponent = () => {
   const currency = "USD";
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/nft/all")
+    fetch("https://musechain-api.herokuapp.com/api/nft/all")
       .then((data) => data.json())
       .then((data) => {
         console.log(data);
@@ -269,7 +269,7 @@ const ButtonWrapper = ({data} : any) => {
           };
           console.log(request);
           const serverData = await fetch(
-            "http://localhost:8080/api/nft/checkout",
+            "https://musechain-api.herokuapp.com/api/nft/checkout",
             {
               method: "POST",
               headers: {
@@ -289,7 +289,7 @@ const ButtonWrapper = ({data} : any) => {
             const orderData = localStorage.getItem('orderData'); 
             console.log(orderData);
             const response = await fetch(
-              "http://localhost:8080/api/nft/webhook",
+              "https://musechain-api.herokuapp.com/api/nft/webhook",
               {
                 method: "POST",
                 headers: {

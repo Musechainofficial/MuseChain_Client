@@ -5,8 +5,8 @@ import axios from 'axios';
 const qs = require('qs');
 
 const http = axios.create({
-  // baseURL: "https://musechain-api.herokuapp.com/api/", // AppConsts.remoteServiceBaseUrl,
-  baseURL: "http://localhost:8080/api/", // AppConsts
+  baseURL: "https://musechain-api.herokuapp.com/api/", // AppConsts.remoteServiceBaseUrl,
+  // baseURL: "http://localhost:8080/api/", // AppConsts
   timeout: 120000,
   paramsSerializer: function(params) {
     return qs.stringify(params, {
