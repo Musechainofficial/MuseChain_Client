@@ -4,12 +4,21 @@ import NavBarComponent from "src/components/Navbar/usernav";
 import FooterComponent from "src/components/Footer";
 import GoToTop from "../GoToTop";
 import Audio from "./audioplayer";
+import {
+  PayPalScriptProvider,
+  PayPalButtons,
+  usePayPalScriptReducer,
+} from "@paypal/react-paypal-js";
 const MarketComponent = () => {
   const [nft, setNft] = useState([]);
   const [present, setPresent] = useState(false);
+  const [orderData, setOrderData] = useState();
+
+  const style = { layout: "vertical" };
+  const currency = "USD";
 
   useEffect(() => {
-    fetch("https://musechain-api.herokuapp.com/api/nft/all")
+    fetch("http://localhost:8080/api/nft/all")
       .then((data) => data.json())
       .then((data) => {
         console.log(data);
@@ -65,6 +74,8 @@ const MarketComponent = () => {
       });
   };
 
+  
+
   return (
     <React.Fragment>
       <NavBarComponent />
@@ -79,9 +90,9 @@ const MarketComponent = () => {
                   <Box p={1}>
                     <Card sx={{ borderRadius: "20px", padding: "30px" }}>
                       {data.type === "audio" ? (
-                        <Audio url={data.url} name={data.name} /> 
+                        <Audio url={data.url} name={data.name} />
                       ) : (
-                          <Box
+                        <Box
                           component="img"
                           src={data.url}
                           sx={{
@@ -142,7 +153,7 @@ const MarketComponent = () => {
                       >
                         #1/5
                       </Typography>
-                      <Button
+                      {/* <Button
                         // onClick={() => {
                         //   gotoSetting();
                         // }}
@@ -166,7 +177,18 @@ const MarketComponent = () => {
                         >
                           Buy Now
                         </Typography>
-                      </Button>
+                      </Button> */}
+                      {/* <div style={{ maxWidth: "750px", minHeight: "200px" }}> */}
+                        <PayPalScriptProvider
+                          options={{
+                            "client-id": "Ac6ZGzVcCljfLkazaezjwTXHwEoKPvHIQI5UnLn7SQY4VcyGWquMX7rN7eAMehthxqIFJpk1TRTmsNAr",
+                            components: "buttons",
+                            currency: "USD",
+                          }}
+                        >
+                          <ButtonWrapper data={data} />
+                        </PayPalScriptProvider>
+                      {/* </div> */}
                       <Button
                         // onClick={() => {
                         //   gotoSetting();
@@ -203,4 +225,88 @@ const MarketComponent = () => {
     </React.Fragment>
   );
 };
+
+const ButtonWrapper = ({data} : any) => {
+  // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
+  // This is the main reason to wrap the PayPalButtons in a new component
+  console.log(data);
+  const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+
+  useEffect(() => {
+    dispatch({
+      type: "resetOptions",
+      value: {
+        ...options,
+        currency: "USD",
+      },
+    });
+  }, []);
+
+  return (
+    <>
+      {/* {showSpinner && isPending && <div className="spinner" />} */}
+      <PayPalButtons
+        // style={style}
+        disabled={false}
+        // forceReRender={[amount, currency, style]}
+        fundingSource={undefined}
+        createOrder={async () => {
+          const name = "access";
+          var tok;
+          const token: any = document.cookie.match(
+            `(?:(?:^|.*; *)${name} *= *([^;]*).*$)|^.*$`
+          );
+          if (token.length > 0) {
+            tok = token[1];
+          }
+          console.log(tok, data.id);
+          // const wallet = await connectToWeb3();
+          // console.log(wallet);
+          const request = {
+            token: tok,
+            items: { id: data.id },
+            wallet: "sdfasfd",
+          };
+          console.log(request);
+          const serverData = await fetch(
+            "http://localhost:8080/api/nft/checkout",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(request),
+            }
+          );
+          const data_1 = await serverData.json();
+          console.log(data_1);
+          localStorage.setItem('orderData', JSON.stringify(data_1.url));
+          return data_1.url.orderId;
+        }}
+        onApprove={function (data, actions: any) {
+          return actions.order.capture().then(async function () {
+            console.log(data);
+            const orderData = localStorage.getItem('orderData'); 
+            console.log(orderData);
+            const response = await fetch(
+              "http://localhost:8080/api/nft/webhook",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: orderData
+              }
+            );
+            const responseData = await response.json();
+            console.log(responseData);
+            // Your code here after capture the order
+          });
+        }}
+      />
+    </>
+  );
+};
+
+
 export default MarketComponent;
