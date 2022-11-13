@@ -35,40 +35,40 @@ const RegisterComponent = () => {
   const [isRequired, setisRequired] = useState(true)
 
   const onRegister = () => {
-    if (firstName === "" || lastName === "" || userName === "" || email === "" || password === "" || rePassword === "") {
-      alert('Auth fails')
+    if (firstName === "" || lastName === "" || userName === "" || email === "" || password === "" || rePassword === "" || password != rePassword) {
+      alert('Please input details carefully and try again!')
     } else {
       // const onRegister = () => {
-        const data = {
-          firstName,
-          lastName,
-          userName,
-          email,
-          password,
-          referral
-        };
-        setLoading(true);
-        userService
-          .registerUser(data)
-          .then((result: UserDto) => {
-            // console.log("Result = ", result);
-            // alert(`This is your private key\n ${result.privateKey}`);
-            setcopypvt(result.privateKey);
-    
-            setLoading(false);
-            // alert(`${result.privateKey} <Button>copy</Button>`);
-            setModalShow(true)
-            // navigate("/login");
-    
-          })
-          .catch((e) => {
-            console.log("Error = ", e);
-            let message = String(e.response.data.message);
-            alert(message);
-            setLoading(false);
-          });
-    
+      const data = {
+        firstName,
+        lastName,
+        userName,
+        email,
+        password,
+        referral
       };
+      setLoading(true);
+      userService
+        .registerUser(data)
+        .then((result: UserDto) => {
+          // console.log("Result = ", result);
+          // alert(`This is your private key\n ${result.privateKey}`);
+          setcopypvt(result.privateKey);
+
+          setLoading(false);
+          // alert(`${result.privateKey} <Button>copy</Button>`);
+          setModalShow(true)
+          // navigate("/login");
+
+        })
+        .catch((e) => {
+          console.log("Error = ", e);
+          let message = String(e.response.data.message);
+          alert(message);
+          setLoading(false);
+        });
+
+    };
     // }
   };
 
@@ -84,15 +84,15 @@ const RegisterComponent = () => {
       <NavBarComponent />
       <Loading loading={loading} />
       <Box>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <MyVerticallyCenteredModal
-          style={{ padding: '5px', borderRadius: '10px', backgroundColor: 'rgb(240,240,240)', position: 'absolute', top: '14%', left: '10%', right: '10%', width: '80%' }}
-          show={modalShow}
-          onHide={hideAlert}
-          onCopy={() => { navigator.clipboard.writeText(copypvt) }}
-          text={copypvt}
-        />
-      </div>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <MyVerticallyCenteredModal
+            style={{ padding: '5px', borderRadius: '10px', backgroundColor: 'rgb(240,240,240)', position: 'absolute', top: '14%', left: '10%', right: '10%', width: '80%' }}
+            show={modalShow}
+            onHide={hideAlert}
+            onCopy={() => { navigator.clipboard.writeText(copypvt) }}
+            text={copypvt}
+          />
+        </div>
       </Box>
       <Box my={4}>
         <Container sx={{ placeItems: "center" }}>
@@ -207,7 +207,7 @@ const RegisterComponent = () => {
                     value={rePassword}
                     onChange={(event) => {
                       setRePassword(event.target.value);
-                      setrqRePassword(' Completed')
+                      setrqRePassword('Re-type your password carefully')
                     }}
                     style={{ padding: "2.4%", borderRadius: "20px", marginTop: "-5px" }}
                   />
