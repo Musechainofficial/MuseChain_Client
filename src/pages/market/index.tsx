@@ -1,12 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { Box, Container, Typography, Button, Card, Grid } from "@mui/material";
+import { Box, Container, Typography, Button, Card, Grid, Slide, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import NavBarComponent from "src/components/Navbar/usernav";
 import FooterComponent from "src/components/Footer";
 import GoToTop from "../GoToTop";
 import Audio from "./audioplayer";
+import Modal from "antd/lib/modal";
+import { TransitionProps } from "@mui/material/transitions";
+
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement<any, any>;
+  },
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+
 const MarketComponent = () => {
   const [nft, setNft] = useState([]);
   const [present, setPresent] = useState(false);
+  const [open, setOpen] = React.useState(false);
+
 
   useEffect(() => {
     fetch("https://musechain-api.herokuapp.com/api/nft/all")
@@ -18,7 +33,21 @@ const MarketComponent = () => {
       });
   }, []);
 
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const connectToWeb3 = async () => {
+
+    
+  };
+
+  const showNftDetails = async () => {
     const { solana } = window;
     if (solana && solana.isPhantom) {
       try {
@@ -70,6 +99,26 @@ const MarketComponent = () => {
       <NavBarComponent />
 
       <Container>
+      <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle><b>This is a unique 1 of 1 Unexposed NFT.</b></DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            The price is $1 USD.<br/><br/>
+            <br />
+            <i><b>Note:</b></i>The purchase of this NFT does not result in physical ownership rights to the Unexposed Logo
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>Buy Now</Button>
+        </DialogActions>
+      </Dialog>
         <Grid container spacing={3} mb={3}>
           {present &&
             nft.map((data: any, index) => {
@@ -168,9 +217,7 @@ const MarketComponent = () => {
                         </Typography>
                       </Button>
                       <Button
-                        // onClick={() => {
-                        //   gotoSetting();
-                        // }}
+                        onClick={handleClickOpen}
                         sx={{
                           background: "#000",
                           padding: "7px 20px 7px 20px",
@@ -194,7 +241,9 @@ const MarketComponent = () => {
                     </Card>
                   </Box>
                 </Grid>
+                
               );
+              
             })}
         </Grid>
       </Container>
