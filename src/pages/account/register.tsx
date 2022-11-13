@@ -30,7 +30,7 @@ const RegisterComponent = () => {
   const [referral, setReferral] = useState<string>("");
   const [rqreferral, setrqReferral] = useState<string>("(optional)");
   const [loading, setLoading] = useState<boolean>(false);
-  const [modalShow, setModalShow] = React.useState(true);
+  const [modalShow, setModalShow] = React.useState(false);
   const [copypvt, setcopypvt] = useState('');
   const [isRequired, setisRequired] = useState(true)
 
