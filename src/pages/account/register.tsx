@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Container, Typography, Button, Card, Grid } from "@mui/material";
 import { Input, Result } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -21,10 +21,20 @@ const RegisterComponent = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [rePassword, setRePassword] = useState<string>("");
+  const [rqfirstName, setrqFirstName] = useState<string>("* first name is required");
+  const [rqlastName, setrqLastName] = useState<string>("* last name is required");
+  const [rquserName, setrqUserName] = useState<string>("* user name is required");
+  const [rqemail, setrqEmail] = useState<string>("* email is required");
+  const [rqpassword, setrqPassword] = useState<string>("* password is required");
+  const [rqrePassword, setrqRePassword] = useState<string>("* retype password should be matched");
   const [referral, setReferral] = useState<string>("");
+  const [rqreferral, setrqReferral] = useState<string>("(optional)");
   const [loading, setLoading] = useState<boolean>(false);
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = React.useState(true);
   const [copypvt, setcopypvt] = useState('');
+  const [isRequired, setisRequired] = useState(true)
+
+
 
   const onRegister = () => {
     const data = {
@@ -67,9 +77,9 @@ const RegisterComponent = () => {
     <React.Fragment>
       <NavBarComponent />
       <Loading loading={loading} />
-      <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <MyVerticallyCenteredModal
-          style={{padding:'15px', borderRadius:'10px', backgroundColor: 'white', position: 'absolute', top: '14%', left:'10%', right:'10%', width: '80%' }}
+          style={{ padding: '5px', borderRadius: '10px', backgroundColor: 'rgb(236,236,236)', position: 'absolute', marginLeft:'auto', width: '80%' }}
           show={modalShow}
           onHide={hideAlert}
           onCopy={() => { navigator.clipboard.writeText(copypvt) }}
@@ -101,6 +111,7 @@ const RegisterComponent = () => {
                   Start your curated art <br /> collection now
                 </Typography>
               </Grid>
+              {/* <form> */}
               <Grid item lg={6} p={10} sx={{ placeItems: "center", margin: "0px", padding: "2%" }}>
                 <Typography
                   typography="p"
@@ -115,64 +126,92 @@ const RegisterComponent = () => {
                 >
                   Create Account
                 </Typography>
-                <Input
-                  placeholder="Firstname"
-                  value={firstName}
-                  onChange={(event) => {
-                    setFirstName(event.target.value);
-                  }}
-                  style={{ width: "45%", padding: "2.4%", borderRadius: "20px", marginTop: "30px", marginRight: "5%" }}
-                />
-                <Input
-                  placeholder="Lastname"
-                  value={lastName}
-                  onChange={(event) => {
-                    setLastName(event.target.value);
-                  }}
-                  style={{ width: "50%", padding: "2.4%", borderRadius: "20px", marginTop: "30px" }}
-                />
-                <Input
-                  placeholder="Username"
-                  value={userName}
-                  onChange={(event) => {
-                    setUserName(event.target.value);
-                  }}
-                  style={{ padding: "2.4%", borderRadius: "20px", marginTop: "30px" }}
-                />
-                <Input
-                  placeholder="Enter email"
-                  type="email"
-                  value={email}
-                  onChange={(event) => {
-                    setEmail(event.target.value);
-                  }}
-                  style={{ padding: "2.4%", borderRadius: "20px", marginTop: "30px" }}
-                />
-                <Input
-                  placeholder="Enter password"
-                  type="password"
-                  value={password}
-                  onChange={(event) => {
-                    setPassword(event.target.value);
-                  }}
-                  style={{ padding: "2.4%", borderRadius: "20px", marginTop: "20px" }}
-                />
-                <Input
-                  placeholder="Re-Password"
-                  type="password"
-                  value={rePassword}
-                  onChange={(event) => {
-                    setRePassword(event.target.value);
-                  }}
-                  style={{ padding: "2.4%", borderRadius: "20px", marginTop: "20px" }}
-                />
+                <Box width="100%" sx={{ justifyContent: "center" }}>
+                  <Input
+                    placeholder="First name"
+                    value={firstName}
+                    onChange={(event) => {
+                      setFirstName(event.target.value)
+                      setrqFirstName(' Completed')
+                    }}
+                    // onClick={() => {rqd()}}
+                    style={{ width: "100%", padding: "2.4%", borderRadius: "20px", marginTop: "30px", marginRight: "5%", alignContent: 'center' }}
+
+                  />
+                  <p style={{ color: 'grey' }}>{rqfirstName}</p>
+                </Box>
+
+                <Box width="100%" sx={{ justifyContent: "center" }}>
+                  <Input
+                    placeholder="Last name"
+                    value={lastName}
+                    onChange={(event) => {
+                      setLastName(event.target.value);
+                      setrqLastName(' Completed')
+                    }}
+                    style={{ width: "100%", padding: "2.4%", borderRadius: "20px", marginTop: "-5px" }}
+                  />
+                  <p style={{ color: 'grey' }}>{rqlastName}</p>
+                </Box>
+
+                <Box width="100%" sx={{ justifyContent: "center" }}>
+                  <Input
+                    placeholder="Username"
+                    value={userName}
+                    onChange={(event) => {
+                      setUserName(event.target.value);
+                      setrqUserName(' Completed')
+                    }}
+                    style={{ width: "100%", padding: "2.4%", borderRadius: "20px", marginTop: "-5px" }}
+                  />
+                  <p style={{ color: 'grey' }}>{rquserName}</p>
+                </Box>
+                <Box width="100%" sx={{ justifyContent: "center" }}>
+                  <Input
+                    placeholder="Enter email"
+                    type="email"
+                    value={email}
+                    onChange={(event) => {
+                      setEmail(event.target.value);
+                      setrqEmail(' Completed')
+                    }}
+                    style={{ padding: "2.4%", borderRadius: "20px", marginTop: "-5px" }}
+                  />
+                  <p style={{ color: 'grey' }}>{rqemail}</p>
+                </Box>
+                <Box width="100%" sx={{ justifyContent: "center" }}>
+                  <Input
+                    placeholder="Enter password"
+                    type="password"
+                    value={password}
+                    onChange={(event) => {
+                      setPassword(event.target.value);
+                      setrqPassword(' Completed')
+                    }}
+                    style={{ padding: "2.4%", borderRadius: "20px", marginTop: "-5px" }}
+                  />
+                  <p style={{ color: 'grey' }}>{rqpassword}</p>
+                </Box>
+                <Box width="100%" sx={{ justifyContent: "center" }}>
+                  <Input
+                    placeholder="Re-Password"
+                    type="password"
+                    value={rePassword}
+                    onChange={(event) => {
+                      setRePassword(event.target.value);
+                      setrqRePassword(' Completed')
+                    }}
+                    style={{ padding: "2.4%", borderRadius: "20px", marginTop: "-5px" }}
+                  />
+                  <p style={{ color: 'grey' }}>{rqrePassword}</p>
+                </Box>
                 <Input
                   placeholder="Referral Code"
                   value={referral}
                   onChange={(event) => {
                     setReferral(event.target.value);
                   }}
-                  style={{ padding: "2.4%", borderRadius: "20px", marginTop: "20px" }}
+                  style={{ padding: "2.4%", borderRadius: "20px", marginTop: "-5px" }}
                 />
                 <Typography
                   typography="p"
@@ -189,6 +228,7 @@ const RegisterComponent = () => {
                 </Typography>
                 <Box width="100%" sx={{ display: "flex", justifyContent: "center" }}>
                   <Button
+                    type="submit"
                     onClick={() => { onRegister(); }}
                     // onClick={function (e) {onRegister(); popupcall() }}
                     sx={{
@@ -214,6 +254,7 @@ const RegisterComponent = () => {
                 </Box>
                 <p style={{ textAlign: 'center', padding: '10px' }}>Already have an account? <Link to='/Login'>Login</Link></p>
               </Grid>
+              {/* </form> */}
             </Grid>
           </Card>
         </Container>
