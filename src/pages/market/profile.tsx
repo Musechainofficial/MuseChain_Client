@@ -200,7 +200,7 @@ const ProfileComponent = () => {
                           color: "#000",
                         }}
                       >
-                        #1/100
+                        #1/5
                       </Typography>
                       <Button
                         onClick={() => {
