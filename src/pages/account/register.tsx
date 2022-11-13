@@ -79,7 +79,7 @@ const RegisterComponent = () => {
       <Loading loading={loading} />
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <MyVerticallyCenteredModal
-          style={{ padding: '5px', borderRadius: '10px', backgroundColor: 'rgb(236,236,236)', position: 'absolute', marginLeft:'auto', width: '80%' }}
+           style={{ padding: '5px', borderRadius: '10px', backgroundColor: 'rgb(240,240,240)', position: 'absolute', top: '14%', left: '10%', right: '10%', width: '80%' }}
           show={modalShow}
           onHide={hideAlert}
           onCopy={() => { navigator.clipboard.writeText(copypvt) }}
