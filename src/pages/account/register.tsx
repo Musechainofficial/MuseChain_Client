@@ -34,39 +34,45 @@ const RegisterComponent = () => {
   const [copypvt, setcopypvt] = useState('');
   const [isRequired, setisRequired] = useState(true)
 
-
-
   const onRegister = () => {
-    const data = {
-      firstName,
-      lastName,
-      userName,
-      email,
-      password,
-      referral
-    };
-    setLoading(true);
-    userService
-      .registerUser(data)
-      .then((result: UserDto) => {
-        // console.log("Result = ", result);
-        // alert(`This is your private key\n ${result.privateKey}`);
-        setcopypvt(result.privateKey);
-
-        setLoading(false);
-        // alert(`${result.privateKey} <Button>copy</Button>`);
-        setModalShow(true)
-        // navigate("/login");
-
-      })
-      .catch((e) => {
-        console.log("Error = ", e);
-        let message = String(e.response.data.message);
-        alert(message);
-        setLoading(false);
-      });
-
+    if (firstName === "" || lastName === "" || userName === "" || email === "" || password === "" || rePassword === "") {
+      alert('Auth fails')
+    } else {
+      // const onRegister = () => {
+        const data = {
+          firstName,
+          lastName,
+          userName,
+          email,
+          password,
+          referral
+        };
+        setLoading(true);
+        userService
+          .registerUser(data)
+          .then((result: UserDto) => {
+            // console.log("Result = ", result);
+            // alert(`This is your private key\n ${result.privateKey}`);
+            setcopypvt(result.privateKey);
+    
+            setLoading(false);
+            // alert(`${result.privateKey} <Button>copy</Button>`);
+            setModalShow(true)
+            // navigate("/login");
+    
+          })
+          .catch((e) => {
+            console.log("Error = ", e);
+            let message = String(e.response.data.message);
+            alert(message);
+            setLoading(false);
+          });
+    
+      };
+    // }
   };
+
+
 
   const hideAlert = () => {
     setModalShow(false)
@@ -77,15 +83,17 @@ const RegisterComponent = () => {
     <React.Fragment>
       <NavBarComponent />
       <Loading loading={loading} />
+      <Box>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <MyVerticallyCenteredModal
-           style={{ padding: '5px', borderRadius: '10px', backgroundColor: 'rgb(240,240,240)', position: 'absolute', top: '14%', left: '10%', right: '10%', width: '80%' }}
+          style={{ padding: '5px', borderRadius: '10px', backgroundColor: 'rgb(240,240,240)', position: 'absolute', top: '14%', left: '10%', right: '10%', width: '80%' }}
           show={modalShow}
           onHide={hideAlert}
           onCopy={() => { navigator.clipboard.writeText(copypvt) }}
           text={copypvt}
         />
       </div>
+      </Box>
       <Box my={4}>
         <Container sx={{ placeItems: "center" }}>
 
