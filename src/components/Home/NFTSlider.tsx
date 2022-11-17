@@ -13,7 +13,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import NextIcon from "../../assets/images/next.svg";
 import PrevIcon from "../../assets/images/prev.svg";
-import NFTCard from "../Card/NFT";
+// import nftcard from "../Card/NFT";
+import MyNFTSlider from "../Card/MyNFTSlider";
 
 const NFTSliderComponent = ({display}:{display:number}) => {
   const responsive = {
@@ -37,7 +38,7 @@ const NFTSliderComponent = ({display}:{display:number}) => {
   const prev = () => {  };
   const renderData = () => {
     return (
-      <><NFTCard /><NFTCard /><NFTCard /><NFTCard /><NFTCard /></>
+      <><MyNFTSlider /><MyNFTSlider /><MyNFTSlider /><MyNFTSlider /><MyNFTSlider /></>
     );
   };
 
@@ -89,10 +90,10 @@ const NFTSliderComponent = ({display}:{display:number}) => {
         itemClass="carousel-item-padding-40-px"
         className="carousel-padding"
       >
-        <NFTCard />
-        <NFTCard />
-        <NFTCard />
-        <NFTCard />
+        <MyNFTSlider />
+        <MyNFTSlider />
+        <MyNFTSlider />
+        <MyNFTSlider />
       </Carousel>
       <IconButton
         sx={{ marginLeft: "24px" }}
