@@ -2,13 +2,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(250, 250, 250);
+	width: 80%;
+	font-size: 17px;
 }
-
 .alertBox{
     width: auto;
     height: auto;
 	overflow-y: scroll;
+    background-color: rgb(245, 245, 245);
+	padding: 30px;
+	border-radius: 20px;
 }
 
 
@@ -19,8 +22,10 @@
 	cursor:pointer;
 	color:#ffffff;
 	padding:5px 20px;
-    margin: 20px;
+    /* margin: 20px; */
 	text-decoration:none;
+	margin-top: -10px;
+	margin-bottom: -10px;
 }
 .myCloseButton:hover {
 	background-color:#0688fa;
@@ -31,22 +36,27 @@
 }
 
 .myCopyButton {
-	background-color:#2df960;
+	background-color:#c1a86a;
 	border-radius:3px;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
 	padding:5px 20px;
 	text-decoration:none;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 .myCopyButton:hover {
-	background-color:#06fa06;
+	background-color:#b8a26a;
 }
 .myCopyButton:active {
 	position:relative;
 	top:1px;
 }
 
+.poverflow{
+	overflow: none;
+}
 
 
 

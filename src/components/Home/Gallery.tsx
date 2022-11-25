@@ -34,23 +34,9 @@ const GalleryComponent = () => {
         >
           Quality NFTs, at your fingertips
         </Typography>
-        <Grid container spacing={4} mb={3}>
-          <Grid item lg={4}>
-            <NFTCardComponent />
-          </Grid>
-          <Grid item lg={4}>
-            <NFTCardComponent />
-          </Grid>
-          <Grid item lg={4}>
-            <NFTCardComponent />
-          </Grid>
-          <Grid item lg={4}>
-            <NFTCardComponent />
-          </Grid>
-          <Grid item lg={4}>
-            <NFTCardComponent />
-          </Grid>
-          <Grid item lg={4}>
+        {/* <Grid> */}
+        <Grid container spacing={3} mb={3}>
+          <Grid>
             <NFTCardComponent />
           </Grid>
         </Grid>
