@@ -42,7 +42,7 @@ class UserService {
     }
 
     public async sendResetPassword(data: object | null): Promise<MessageDto> {
-        let result: AxiosResponse = await http.post('user/valiate', data);
+        let result: AxiosResponse = await http.post('user/validate', data);
         return result.data;
     }
 

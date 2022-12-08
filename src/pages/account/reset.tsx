@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Container, Typography, Button, Card } from "@mui/material";
 import { Input } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import NavBarComponent from "src/components/Navbar/navbar";
 import FooterComponent from "src/components/Footer";
 import OtpInput from 'react-otp-input';
@@ -9,13 +9,24 @@ import userService from "src/services/users/userService";
 import Loading from "src/components/Loading";
 import { MessageDto } from "src/services/message/dto/messageDto";
 import GoToTop from '../GoToTop';
+
+
+
 const ResetComponent = () => {
   let navigate = useNavigate();
+  const location:any = useLocation()
   const [loading, setLoading] = useState<boolean>(false);
   const [otp, setOtp] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+
+  console.log(location.state.userEmail)
+
   const onReset = () => {
+    if(!otp){
+      alert("Enter Otp !")
+      return;
+    }
     const data = {
       otp,
       password,
@@ -33,6 +44,8 @@ const ResetComponent = () => {
       });
     // navigate("/setting");
   };
+
+
 
   return (
     <React.Fragment>
@@ -64,7 +77,8 @@ const ResetComponent = () => {
                 textAlign: "center",
               }}
             >
-                [cha***@gmail.com]
+              {location.state.userEmail}
+              
             </Typography>
             <Typography
               typography="p"
