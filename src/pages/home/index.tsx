@@ -15,10 +15,10 @@ const HomeComponent = () => {
       <NavBarComponent />
       <HomeIntroComponent />
       <CurateComponent />
-      <AnswersComponent />
       <GalleryComponent />
       <HomeGuideComponent />
       {/* <HomeFooterComponent /> */}
+      <AnswersComponent />
       <FooterComponent />
       <GoToTop />
     </React.Fragment>
