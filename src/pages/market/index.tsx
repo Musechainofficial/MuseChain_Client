@@ -24,6 +24,8 @@ import {
 } from "@paypal/react-paypal-js";
 import Modal from "antd/lib/modal";
 import { TransitionProps } from "@mui/material/transitions";
+import { Row, Col, Image } from "react-bootstrap";
+import artistImage from "../../assets/images/artist.webp";
 
 const NFT_TYPES = {
     AUDIO: "audio"
@@ -144,24 +146,30 @@ const MarketComponent = () => {
                             The purchase of this NFT does not result in physical ownership rights to
                             the Unexposed Logo
                             {artWorkBio ? (
-                                <div>
+                                <Row>
+                                    <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+                                        <Image src={artistImage} height={250} width={250} rounded />
+                                    </Col>
+                                    <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+                                        <p>
+                                            <h6>UncleRayNFT#01</h6>
+                                            Mum, m-my stutter… I can’t get rid of it. I-I-I’m at my
+                                            wit’s end. Ray, my son, listen to me. Don’t speak too
+                                            fast. Don’t get too excited. Take a deep breath and
+                                            allow your words to come out freely. You’re a smart boy.
+                                            You can do it.
+                                            <br />
+                                            ‘Dearest mum, I thank you for your motivational words.
+                                            You gave me the confidence and belief to overcome my
+                                            stuttering. You changed my life. Just look at what
+                                            happiness your encouragement has brought me since.’
+                                            <br />
+                                            Uncle Ray says, always listen to your parents. They want
+                                            the best for you.
+                                        </p>
+                                    </Col>
                                     ​
-                                    <p>
-                                        <h6>UncleRayNFT#01</h6>
-                                        Mum, m-my stutter… I can’t get rid of it. I-I-I’m at my
-                                        wit’s end. Ray, my son, listen to me. Don’t speak too fast.
-                                        Don’t get too excited. Take a deep breath and allow your
-                                        words to come out freely. You’re a smart boy. You can do it.
-                                        <br />
-                                        ‘Dearest mum, I thank you for your motivational words. You
-                                        gave me the confidence and belief to overcome my stuttering.
-                                        You changed my life. Just look at what happiness your
-                                        encouragement has brought me since.’
-                                        <br />
-                                        Uncle Ray says, always listen to your parents. They want the
-                                        best for you.
-                                    </p>
-                                </div>
+                                </Row>
                             ) : null}
                         </DialogContentText>
                     </DialogContent>

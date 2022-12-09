@@ -13,7 +13,7 @@ import UncleRayComponent from "src/components/Home/UncleRay";
 import { Container } from "react-bootstrap";
 const HomeComponent = () => {
     return (
-        <React.Fragment>
+        <>
             <NavBarComponent />
             <HomeIntroComponent />
             <CurateComponent />
@@ -24,7 +24,7 @@ const HomeComponent = () => {
             <AnswersComponent />
             <FooterComponent />
             <GoToTop />
-        </React.Fragment>
+        </>
     );
 };
 
