@@ -8,10 +8,17 @@ import { Typography } from "@mui/material";
 
 const UncleRay = () => {
     return (
-        <Container style={{ backgroundColor: "white", padding: "10px 0 10px 0" }}>
+        <Container
+            style={{
+                backgroundColor: "white",
+                padding: "10px 0 10px 0",
+                marginTop: "38px",
+                marginBottom: "28px"
+            }}
+        >
             <Row>
                 <Col xs={12} sm={12} md={6} lg={6} xl={6}>
-                    <Image src={uncleRayImage} height={500} width={500} rounded />
+                    <Image src={uncleRayImage} width={550} rounded />
                 </Col>
                 <Col
                     xs={12}
@@ -29,7 +36,7 @@ const UncleRay = () => {
                         pt={1}
                         sx={{
                             letterSpacing: " 0em",
-                            lineHeight: "2",
+                            lineHeight: "3",
                             color: "#000000"
                         }}
                     >
