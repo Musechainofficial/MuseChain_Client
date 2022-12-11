@@ -146,13 +146,13 @@ const MarketComponent = () => {
                             The purchase of this NFT does not result in physical ownership rights to
                             the Unexposed Logo
                             {artWorkBio ? (
-                                <Row>
+                                <Row style={{ marginTop: "20px", marginBottom: "20px" }}>
                                     <Col xs={12} sm={12} md={6} lg={6} xl={6}>
-                                        <Image src={artistImage} height={250} width={250} rounded />
+                                        <Image src={artistImage} height={350} width={400} rounded />
                                     </Col>
                                     <Col xs={12} sm={12} md={6} lg={6} xl={6}>
-                                        <p>
-                                            <h6>UncleRayNFT#01</h6>
+                                        <p style={{ fontSize: "1.5rem" }}>
+                                            <h6 style={{ fontSize: "1.5rem" }}>UncleRayNFT#01</h6>
                                             Mum, m-my stutter… I can’t get rid of it. I-I-I’m at my
                                             wit’s end. Ray, my son, listen to me. Don’t speak too
                                             fast. Don’t get too excited. Take a deep breath and
@@ -178,6 +178,21 @@ const MarketComponent = () => {
                         <Button onClick={handleClose}>Buy Now</Button>
                     </DialogActions>
                 </Dialog>
+                {present && nft?.length && (
+                    <Typography
+                        typography="p"
+                        mt={2}
+                        p={0.5}
+                        sx={{
+                            fontSize: "20px",
+                            fontWeight: 600,
+                            color: "#000",
+                            textAlign: "center"
+                        }}
+                    >
+                        Showing {nft?.length} NFTs for sale
+                    </Typography>
+                )}
                 <Grid container spacing={3} mb={3}>
                     {present &&
                         nft.map((data: any, index) => {
