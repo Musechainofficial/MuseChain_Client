@@ -26,6 +26,7 @@ import Modal from "antd/lib/modal";
 import { TransitionProps } from "@mui/material/transitions";
 import { Row, Col, Image } from "react-bootstrap";
 import artistImage from "../../assets/images/artist.webp";
+import "./index.css";
 
 const NFT_TYPES = {
     AUDIO: "audio"
@@ -148,7 +149,7 @@ const MarketComponent = () => {
                             {artWorkBio ? (
                                 <Row style={{ marginTop: "20px", marginBottom: "20px" }}>
                                     <Col xs={12} sm={12} md={6} lg={6} xl={6}>
-                                        <Image src={artistImage} height={350} width={400} rounded />
+                                        <Image src={artistImage} rounded className="artist-image" />
                                     </Col>
                                     <Col xs={12} sm={12} md={6} lg={6} xl={6}>
                                         <p style={{ fontSize: "1.5rem" }}>

@@ -1,0 +1,11 @@
+.image-container{
+   display: flex;
+   justify-content: center;
+
+}
+
+.uncle-ray-image{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
