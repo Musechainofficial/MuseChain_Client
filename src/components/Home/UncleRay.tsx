@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import uncleRayImage from "../../assets/images/uncle-ray.webp";
 import { Typography } from "@mui/material";
+import "./index.css";
 
 const UncleRay = () => {
     return (
@@ -17,8 +18,8 @@ const UncleRay = () => {
             }}
         >
             <Row>
-                <Col xs={12} sm={12} md={6} lg={6} xl={6}>
-                    <Image src={uncleRayImage} width={550} rounded />
+                <Col xs={12} sm={12} md={6} lg={6} xl={6} className="image-container">
+                    <Image src={uncleRayImage} rounded className="uncle-ray-image" />
                 </Col>
                 <Col
                     xs={12}
