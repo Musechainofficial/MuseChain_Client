@@ -8,56 +8,56 @@ import { FaWallet, FaMoneyCheckAlt } from "react-icons/fa";
 import Audio from "../market/audioplayer";
 import * as spl from "@solana/spl-token";
 import * as buffer from "buffer"; 
+import birdImage from "../../assets/images/muse_bird.svg";
+
 const WalletComponent = () => {
   const [wallet, setWallet] = useState("");
   const [balance, setBalance] = useState("0");
   const [nft, setNft] = useState([]);
   const [present, setPresent] = useState(false);
 
-  const rpcEndpoint = "https://api.devnet.solana.com";
-  const solanaConnection = new Connection(rpcEndpoint);
+    const rpcEndpoint = "https://api.devnet.solana.com";
+    const solanaConnection = new Connection(rpcEndpoint);
 
   window.Buffer = buffer.Buffer;
 
-  useEffect(() => {
-    const name = "wallet";
-    var tok = "";
-    const token = document.cookie.match(
-      `(?:(?:^|.*; *)${name} *= *([^;]*).*$)|^.*$`
-    );
-    if (token != null) {
-      if (token.length > 0) {
-        tok = token[1];
-        const name = "access";
-        let accessToken;
-        const jwtToken: any = document.cookie.match(
-          `(?:(?:^|.*; *)${name} *= *([^;]*).*$)|^.*$`
-        );
-        if (jwtToken.length > 0) {
-          accessToken = jwtToken[1];
-        }
+    useEffect(() => {
+        const name = "wallet";
+        var tok = "";
+        const token = document.cookie.match(`(?:(?:^|.*; *)${name} *= *([^;]*).*$)|^.*$`);
+        if (token != null) {
+            if (token.length > 0) {
+                tok = token[1];
+                const name = "access";
+                let accessToken;
+                const jwtToken: any = document.cookie.match(
+                    `(?:(?:^|.*; *)${name} *= *([^;]*).*$)|^.*$`
+                );
+                if (jwtToken.length > 0) {
+                    accessToken = jwtToken[1];
+                }
         console.log(tok);
-        getBalance(tok);
-        const request = {
-          token: accessToken,
-        };
-        fetch("https://musechain-api.herokuapp.com/api/nft/bought", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(request),
-        })
-          .then((data) => data.json())
-          .then((data) => {
-            console.log(data);
-            setNft(data);
-            setPresent(true);
-          });
-      }
-    }
-    setWallet(tok);
-  }, []);
+                getBalance(tok);
+                const request = {
+                    token: accessToken
+                };
+                fetch("https://musechain-api.herokuapp.com/api/nft/bought", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(request)
+                })
+                    .then((data) => data.json())
+                    .then((data) => {
+                        console.log(data);
+                        setNft(data);
+                        setPresent(true);
+                    });
+            }
+        }
+        setWallet(tok);
+    }, []);
 
   const getBalance = async (wallet: String) => {
     console.log(wallet);
