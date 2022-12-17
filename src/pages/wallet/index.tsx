@@ -6,6 +6,8 @@ import GoToTop from "../GoToTop";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { FaWallet, FaMoneyCheckAlt } from "react-icons/fa";
 import Audio from "../market/audioplayer";
+import * as spl from "@solana/spl-token";
+import * as buffer from "buffer"; 
 const WalletComponent = () => {
   const [wallet, setWallet] = useState("");
   const [balance, setBalance] = useState("0");
@@ -14,6 +16,8 @@ const WalletComponent = () => {
 
   const rpcEndpoint = "https://api.devnet.solana.com";
   const solanaConnection = new Connection(rpcEndpoint);
+
+  window.Buffer = buffer.Buffer;
 
   useEffect(() => {
     const name = "wallet";
@@ -32,6 +36,7 @@ const WalletComponent = () => {
         if (jwtToken.length > 0) {
           accessToken = jwtToken[1];
         }
+        console.log(tok);
         getBalance(tok);
         const request = {
           token: accessToken,
@@ -55,11 +60,29 @@ const WalletComponent = () => {
   }, []);
 
   const getBalance = async (wallet: String) => {
+    console.log(wallet);
     const walletPub = new PublicKey(wallet);
     const solBalance = await solanaConnection.getBalance(walletPub);
     const decimalBalance = (solBalance / 1000000000).toFixed(2);
-    console.log(decimalBalance);
-    setBalance(decimalBalance);
+    const USDCMint = new PublicKey("4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU");
+    try {
+      const tokenAccount = await spl.getAssociatedTokenAddress(
+        USDCMint,
+        walletPub,
+      );
+      console.log(tokenAccount.toBase58());
+      const USDCBalance = await spl.getAccount(
+        solanaConnection,
+        tokenAccount 
+      );
+      const USDCBal = (Number(USDCBalance.amount) / 1000000).toFixed(2);
+      console.log(USDCBal);
+      setBalance(USDCBal); 
+    } catch (error) {
+      console.log(0);
+      setBalance("0");  
+    }
+    
   };
 
   return (
@@ -102,7 +125,7 @@ const WalletComponent = () => {
             color: "#000",
           }}
         >
-          <FaMoneyCheckAlt /> Balance: {balance} SOL
+          <FaMoneyCheckAlt /> Balance: {balance} USDC 
         </Typography>
         <Button
           onClick={() => {
