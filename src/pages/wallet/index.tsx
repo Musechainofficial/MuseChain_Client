@@ -89,7 +89,7 @@ const WalletComponent = () => {
     <React.Fragment>
       <NavBarComponent />
       <Container>
-        <Box
+        {/* <Box
           component="img"
           src="https://i.ibb.co/wMZMmxX/wallet.png"
           sx={{
@@ -103,7 +103,7 @@ const WalletComponent = () => {
             alignItems: "center",
             padding: "0%",
           }}
-        />
+        /> */}
         <Typography
           typography="h1"
           mt={2}
