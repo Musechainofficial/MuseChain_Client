@@ -194,6 +194,19 @@ const MarketComponent = () => {
                         Showing {nft?.length} NFTs for sale
                     </Typography>
                 )}
+                <Typography
+                    typography="p"
+                    mt={2}
+                    p={0.5}
+                    sx={{
+                        fontSize: "15px",
+                        fontWeight: 200,
+                        color: "#000",
+                        textAlign: "left"
+                    }}
+                >
+                    Please refresh if purchase options are not dislpayed
+                </Typography>
                 <Grid container spacing={3} mb={3}>
                     {present &&
                         nft.map((data: any, index) => {

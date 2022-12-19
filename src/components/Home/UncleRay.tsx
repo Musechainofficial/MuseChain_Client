@@ -31,6 +31,7 @@ const UncleRay = () => {
                         display: "flex",
                         alignItems: "center"
                     }}
+                    className="p-sm-3"
                 >
                     <Typography
                         typography="h5"
@@ -38,7 +39,9 @@ const UncleRay = () => {
                         sx={{
                             letterSpacing: " 0em",
                             lineHeight: "3",
-                            color: "#000000"
+                            color: "#000000",
+                            paddingLeft: "13px",
+                            paddingRight: "13px"
                         }}
                     >
                         Uncle Ray Cordeiro, The World’s Most Durable Radio DJ (Guinness World

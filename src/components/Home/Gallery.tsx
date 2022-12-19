@@ -29,10 +29,8 @@ const GalleryComponent = () => {
                     Quality NFTs, at your fingertips
                 </Typography>
                 {/* <Grid> */}
-                <Grid container spacing={3} mb={3}>
-                    <Grid>
-                        <NFTCardComponent />
-                    </Grid>
+                <Grid mb={3}>
+                    <NFTCardComponent />
                 </Grid>
                 <Link to="/login">
                     <Box sx={{ display: "flex", justifyContent: "center" }} pb={3}>
@@ -52,7 +50,7 @@ const GalleryComponent = () => {
                                     fontWeight: 500
                                 }}
                             >
-                                Explore collectionist
+                                Explore Collections
                             </Typography>
                         </Button>
                     </Box>
