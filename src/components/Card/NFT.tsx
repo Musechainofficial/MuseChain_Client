@@ -181,7 +181,13 @@ const NFTCardComponent = () => {
                             return (
                                 <Grid item xl={3} lg={3} md={3} sm={12} xs={12}>
                                     <Box p={1}>
-                                        <Card sx={{ borderRadius: "20px", padding: "30px" }}>
+                                        <Card
+                                            sx={{
+                                                borderRadius: "20px",
+                                                padding: "30px",
+                                                border: "1px solid black"
+                                            }}
+                                        >
                                             {data.type === "audio" ? (
                                                 <Audio url={data.url} name={data.name} />
                                             ) : (

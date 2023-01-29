@@ -8,7 +8,7 @@ const GalleryComponent = () => {
             width="100%"
             pt={10}
             sx={{
-                background: "#c1a86a",
+                // background: "#c1a86a",
                 display: "flex",
                 placeItems: "center",
                 flexDirection: "column"
@@ -22,7 +22,7 @@ const GalleryComponent = () => {
                         width: "100%",
                         textAlign: "center",
                         fontWeight: 700,
-                        color: "#fff",
+                        color: "black",
                         lineHeight: "80px"
                     }}
                 >

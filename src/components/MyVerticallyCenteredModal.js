@@ -5,66 +5,93 @@ import Modal from "react-bootstrap/Modal";
 import "./myAlert.css";
 
 const MyVerticallyCenteredModal = (props) => {
-  const [first, setfirst] = useState(true);
-  const [isSelected, setIsSelected] = useState(false);
+    const [first, setfirst] = useState(true);
+    const [isSelected, setIsSelected] = useState(false);
 
-  const handleClick = () => {
-    setIsSelected(!isSelected);
-  };
+    const handleClick = () => {
+        setIsSelected(!isSelected);
+    };
 
+    return (
+        <>
+            <div className="alertWrapper">
+                <Modal {...props}>
+                    {props.isRegisterFail ? (
+                        <div className="alertBox">
+                            <h4 className="text-center">{props.isRegisterFail}</h4>
+                            <hr />
+                            <h5>Reasons: </h5>
+                            <ul>
+                                <li className="mb-1">
+                                    - You might already have registered and account with us using
+                                    the same email, Please use{" "}
+                                    <a href="/forgetpassword">forget password funciton</a>
+                                </li>
+                                <li className="mb-1">
+                                    - You can try restaring your browser or use another browser
+                                </li>
 
-  return (
-    <>
-      <div className="alertWrapper">
-        <Modal {...props}>
-        <div className="alertBox">
-          <h4>Save your Private Key</h4>
-          <p>
-            Hello, thank you for signing up with Musechain. We have created a
-            blockchain wallet for you! A blockchain wallet has 2 elements, a
-            public key and a private key. This long address is your private key.
-            Your private key is VERY important. Think of your public key as your
-            bank account number and the private key as your bank account
-            password. The private key is crucial if you want to sell your NFTs
-            or withdraw money in the future! Here is your private key (note: due
-            to security concerns, we will not be saving your private key and it
-            will NOT be recoverable/ changeable) Please copy your private key
-            and make sure you keep it in a safe place.
-            </p>
-            <p style={{fontsize:'10px'}}>{props.text}</p>
-            <br></br>
-            <Button className="myCopyButton poverflow" onClick={props.onCopy}>
-              Copy Private-Key
-            </Button>
-            <br />
-            <Checkbox onClick={handleClick} style={{ paddingRight: "10px", }}></Checkbox>
-            <p style={{ display: "inline-block"}}>
-              I confirm I read the above and copied the private key.
-            </p>
-            <p>
-            Musechain disclaims any responsibility for any loss of your private
-            keys if you fail to copy it now or fail to keep track of that.
-            </p>
+                                <li className="mb-1">
+                                    - If the issue persists, please contact{" "}
+                                    <a href="mailto:hello@musechain.org">hello@musechain.org</a>
+                                </li>
+                            </ul>
 
-          <Button
-            className="myCloseButton"
-            onClick={props.onHide}
-            style={
-              {
-                backgroundColor: isSelected ? "rgb(35, 145, 221)" : "grey",
-                // className: isSelected ? "myCloseButton" : "btn"
-              }
-            }
-            // disabled={!isSelected}
-            disabled={!isSelected}
-          >
-            Login in Now
-          </Button>
-        </div>
-        </Modal>
-      </div>
+                            <h5 className="text-center">
+                                <a href="/register">Back to signup </a>
+                            </h5>
+                        </div>
+                    ) : (
+                        <div className="alertBox">
+                            <h4>Save your Private Key</h4>
+                            <p>
+                                Hello, thank you for signing up with Musechain. We have created a
+                                blockchain wallet for you! A blockchain wallet has 2 elements, a
+                                public key and a private key. This long address is your private key.
+                                Your private key is VERY important. Think of your public key as your
+                                bank account number and the private key as your bank account
+                                password. The private key is crucial if you want to sell your NFTs
+                                or withdraw money in the future! Here is your private key (note: due
+                                to security concerns, we will not be saving your private key and it
+                                will NOT be recoverable/ changeable) Please copy your private key
+                                and make sure you keep it in a safe place.
+                            </p>
+                            <p style={{ fontsize: "10px" }}>{props.text}</p>
+                            <br></br>
+                            <Button className="myCopyButton poverflow" onClick={props.onCopy}>
+                                Copy Private-Key
+                            </Button>
+                            <br />
+                            <Checkbox
+                                onClick={handleClick}
+                                style={{ paddingRight: "10px" }}
+                            ></Checkbox>
+                            <p style={{ display: "inline-block" }}>
+                                I confirm I read the above and copied the private key.
+                            </p>
+                            <p>
+                                Musechain disclaims any responsibility for any loss of your private
+                                keys if you fail to copy it now or fail to keep track of that.
+                            </p>
 
-      {/* <div className="alertWrapper">
+                            <Button
+                                className="myCloseButton"
+                                onClick={props.onHide}
+                                style={{
+                                    backgroundColor: isSelected ? "rgb(35, 145, 221)" : "grey"
+                                    // className: isSelected ? "myCloseButton" : "btn"
+                                }}
+                                // disabled={!isSelected}
+                                disabled={!isSelected}
+                            >
+                                Login in Now
+                            </Button>
+                        </div>
+                    )}
+                </Modal>
+            </div>
+
+            {/* <div className="alertWrapper">
         <Modal {...props}>
           <div className="alertBox">
             <h4>Save your Private Key</h4>
@@ -94,8 +121,8 @@ const MyVerticallyCenteredModal = (props) => {
           </div>
         </Modal>
       </div> */}
-    </>
-  );
+        </>
+    );
 };
 
 export default MyVerticallyCenteredModal;

@@ -40,14 +40,16 @@ const CurateComponent = () => {
                                     textAlign: "center"
                                 }}
                             >
-                                Musechain x <br /> Unexposed
+                                Musechain x<br />
+                                Unexposed
                             </Typography>
                             <Typography
                                 typography="h4"
                                 py={2}
                                 sx={{
                                     fontWeight: 500,
-                                    color: "#000"
+                                    color: "#000",
+                                    textAlign: "center"
                                 }}
                             >
                                 First curated digital collectibles <br /> launching soon
@@ -61,6 +63,8 @@ const CurateComponent = () => {
                     </Grid> */}
                 </Grid>
             </Container>
+            {/* 
+                        Point :5
             <Box width="100%" sx={{ display: "flex", justifyContent: "center" }}>
                 <Link to="/login">
                     <Button
@@ -72,6 +76,7 @@ const CurateComponent = () => {
                             marginBottom: "30px"
                         }}
                     >
+                      
                         <Typography
                             typography="h4"
                             sx={{
@@ -80,10 +85,11 @@ const CurateComponent = () => {
                             }}
                         >
                             See more of the collection
-                        </Typography>
+                        </Typography> 
                     </Button>
                 </Link>
             </Box>
+            */}
         </Box>
     );
 };

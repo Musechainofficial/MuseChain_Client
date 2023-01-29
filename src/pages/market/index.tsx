@@ -26,6 +26,8 @@ import Modal from "antd/lib/modal";
 import { TransitionProps } from "@mui/material/transitions";
 import { Row, Col, Image } from "react-bootstrap";
 import artistImage from "../../assets/images/artist.webp";
+import birdImage from "../../assets/images/muse_bird.svg";
+
 import "./index.css";
 
 const NFT_TYPES = {
@@ -179,6 +181,14 @@ const MarketComponent = () => {
                         <Button onClick={handleClose}>Buy Now</Button>
                     </DialogActions>
                 </Dialog>
+                <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
+                    <Box
+                        component="img"
+                        src={birdImage}
+                        sx={{ alignItems: "center", justifyContent: "center" }}
+                    />
+                </Box>
+
                 {present && nft?.length && (
                     <Typography
                         typography="p"
@@ -345,7 +355,7 @@ const MarketComponent = () => {
                         })}
                 </Grid>
             </Container>
-            <FooterComponent />
+            <FooterComponent changeLogo />
             <GoToTop />
         </React.Fragment>
     );
