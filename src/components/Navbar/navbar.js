@@ -33,7 +33,10 @@ const NavBarComponent = ({}) => {
                             <NavLink to="/support">Support</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/register">Sign Up/Login</NavLink>
+                            <NavLink to="/register">Sign Up</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/Login">Login</NavLink>
                         </li>
                     </ul>
                 </div>

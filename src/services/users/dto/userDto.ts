@@ -1,4 +1,7 @@
 export interface UserDto {
+  user:{
+    message:string
+  },
     privateKey: any
     id: number
     userName: string

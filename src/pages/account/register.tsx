@@ -32,7 +32,7 @@ const RegisterComponent = () => {
     const [modalShow, setModalShow] = React.useState(false);
     const [copypvt, setcopypvt] = useState("");
     const [isRequired, setisRequired] = useState(true);
-    const [isRegisterFail, setIsRegisterFail] = useState("");
+    const [isRegisterFail, setIsRegisterFail] = useState<any>("");
 
     const onRegister = () => {
         if (
@@ -59,15 +59,22 @@ const RegisterComponent = () => {
             userService
                 .registerUser(data)
                 .then((result: UserDto) => {
-                    // console.log("Result = ", result);
-                    // alert(`This is your private key\n ${result.privateKey}`);
-                    setcopypvt(result.privateKey);
+                    if (!result.privateKey && result.user?.message) {
+                        alert(result.user.message);
+                        setLoading(false);
+                        setIsRegisterFail(true);
 
-                    setLoading(false);
-                    // alert(`${result.privateKey} <Button>copy</Button>`);
-                    setModalShow(true);
-                    // navigate("/login");
-                    setIsRegisterFail("");
+                        Promise.reject();
+                    } else {
+                        // console.log("Result = ", result);
+                        // alert(`This is your private key\n ${result.privateKey}`);
+                        setcopypvt(result.privateKey);
+                        setLoading(false);
+                        // alert(`${result.privateKey} <Button>copy</Button>`);
+                        setModalShow(true);
+                        // navigate("/login");
+                        setIsRegisterFail("");
+                    }
                 })
                 .catch((e) => {
                     console.log("Error = ", e);
