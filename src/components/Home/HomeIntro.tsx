@@ -1,6 +1,7 @@
 import { Container, Box, Button, Typography, Grid } from "@mui/material";
 import bgImage from "../../assets/images/home_bg.png";
 import phoneImage from "../../assets/images/home_phone.png";
+import mockImage from "../../assets/images/musechainMockImage.png";
 import { Link } from "react-router-dom";
 const HomeIntroComponent = () => {
     return (
@@ -19,7 +20,7 @@ const HomeIntroComponent = () => {
                 <Grid container lg={12}>
                     <Grid
                         item
-                        lg={7}
+                        lg={6}
                         sx={{
                             display: "flex",
                             placeItems: "center",
@@ -70,27 +71,28 @@ const HomeIntroComponent = () => {
                     </Grid>
                     <Grid
                         item
-                        lg={5}
+                        lg={6}
                         sx={{
                             display: "flex",
                             flexDirection: "row",
-                            justifyContent: "space-between"
+                            justifyContent: "space-between",
+                            width: "100%"
                         }}
                     >
-                        <Box />
-                        {/* <Box
-              component="img"
-              src={phoneImage}
-              height={{ xs: "400px", md: "500px", lg: "640px" }}
-              ml={{
-                lg: 0,
-                md: 0,
-                xs: 0,
-              }}
-              sx={{
-                maxWidth: "100%",
-              }}
-            /> */}
+                        <Box
+                            component="img"
+                            src={mockImage}
+                            // height={{ xs: "400px", md: "500px", lg: "640px" }}
+                            ml={{
+                                lg: 0,
+                                md: 0,
+                                xs: 0
+                            }}
+                            sx={{
+                                maxWidth: "100%",
+                                objectFit: "cover"
+                            }}
+                        />
                     </Grid>
                 </Grid>
             </Container>
